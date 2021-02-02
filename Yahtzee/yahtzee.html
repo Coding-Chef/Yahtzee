@@ -1,0 +1,214 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <!--Put meta data here-->
+
+    <!--Imports for JS and CSS files add jQuery-->
+    <link href="yahtzee.css" rel="stylesheet" />
+    <script src="Scripts/jquery-3.5.1.min.js"></script>
+    <script src="yahtzee.js"></script>
+
+    <title>Yahtzee</title>
+</head>
+<body>
+    <!--Banner (Add dice pics that change with each click) also use gridbox-->
+    <header id="banner" class="bannerCon">
+
+        <div class="bannerDie">
+            <img class="bannerImg" src="images/6.png" alt="6 dice"/>
+        </div>
+        <div class="bannerDie">
+            <h1 id="bannerHead">Yahtzee</h1>
+        </div>
+        <div class="bannerDie">
+            <img class="bannerImg" src="images/6.png" alt="6 dice"/>
+        </div>
+
+    </header>
+    <!--Main content-->
+    <main>
+        <!--Div to hold dice-->
+        <div id="dice">
+            <img class="die" id="dice1" src="images/q.png" alt="First dice"/>
+            <img class="die" id="dice2" src="images/q.png" alt="second dice"/>
+            <img class="die" id="dice3" src="images/q.png" alt="third dice"/>
+            <img class="die" id="dice4" src="images/q.png" alt="forth dice"/>
+            <img class="die" id="dice5" src="images/q.png" alt="fifth dice"/>
+            <!--Button for rolling-->
+            <div id="rbDiv">
+                <input id="rollButton" type="button" value="Roll the dice!" />
+                <p id="rollCount">3 roll(s) remaining.</p>
+                <p id="info">Click on a die to prevent rerolling. Click again to undo.</p>
+            </div>
+        </div>
+        <!--Div to hold the score tables-->
+        <div id="tableDiv">
+            <!--Upper score table-->
+            <table id="leftTable">
+                <tr>
+                    <th>Category</th>
+                    <th>Description</th>
+                    <th>How to score</th>
+                    <th>Points</th>
+                    <th>Submit</th>
+                </tr>
+                <tr>
+                    <td>Ones</td>
+                    <td>Any combination</td>
+                    <td>Sum of dice with "1"</td>
+                    <td class="scoreCol" id="oneScore">0</td>
+                    <td><input class="subButt" id="oneSub" type="button" value="Submit" /></td>
+                </tr>
+                <tr>
+                    <td>Twos</td>
+                    <td>Any combination</td>
+                    <td>Sum of dice with "2"</td>
+                    <td class="scoreCol" id="twoScore">0</td>
+                    <td><input class="subButt" id="twoSub" type="button" value="Submit" /></td>
+                </tr>
+                <tr>
+                    <td>Threes</td>
+                    <td>Any combination</td>
+                    <td>Sum of dice with "3"</td>
+                    <td class="scoreCol" id="threeScore">0</td>
+                    <td><input class="subButt" id="threeSub" type="button" value="Submit" /></td>
+                </tr>
+                <tr>
+                    <td>Fours</td>
+                    <td>Any combination</td>
+                    <td>Sum of dice with "4"</td>
+                    <td class="scoreCol" id="fourScore">0</td>
+                    <td><input class="subButt" id="fourSub" type="button" value="Submit" /></td>
+                </tr>
+                <tr>
+                    <td>Fives</td>
+                    <td>Any combination</td>
+                    <td>Sum of dice with "5"</td>
+                    <td class="scoreCol" id="fiveScore">0</td>
+                    <td><input class="subButt" id="fiveSub" type="button" value="Submit" /></td>
+                </tr>
+                <tr>
+                    <td>Sixes</td>
+                    <td>Any combination</td>
+                    <td>Sum of dice with "6"</td>
+                    <td class="scoreCol" id="sixScore">0</td>
+                    <td><input class="subButt" id="sixSub" type="button" value="Submit" /></td>
+                </tr>
+                <tr>
+                    <td>Subtotal</td>
+                    <td>Upper subtotal</td>
+                    <td>Sum of above six rows</td>
+                    <td class="scoreCol" id="upperSub">0</td>
+                    <td hidden></td>
+                </tr>
+                <tr>
+                    <td>Bonus</td>
+                    <td>Awarded if subtotal is 63 or more</td>
+                    <td>Score 35</td>
+                    <td class="scoreCol" id="upperBonus">0</td>
+                    <td hidden></td>
+                </tr>
+                <tr>
+                    <th colspan="3">Upper total</th>
+                    <th class="scoreCol" id="upperTotal">0</th>
+                    <td hidden></td>
+                </tr>
+            </table>
+            <!--Lower score table-->
+            <table id="rightTable">
+                <tr>
+                    <th>Category</th>
+                    <th>Description</th>
+                    <th>How to score</th>
+                    <th>Points</th>
+                    <th>Submit</th>
+                </tr>
+                <tr>
+                    <td>Three of a kind</td>
+                    <td>Minimum of three dice the same</td>
+                    <td>Sum of all dice</td>
+                    <td class="scoreCol" id="tokScore">0</td>
+                    <td><input class="subButt" id="tokButt" type="button" value="Submit" /></td>
+                </tr>
+                <tr>
+                    <td>Four of a kind</td>
+                    <td>Minimum of four dice the same</td>
+                    <td>Sum of all dice</td>
+                    <td class="scoreCol" id="fokScore">0</td>
+                    <td><input class="subButt" id="fokButt" type="button" value="Submit" /></td>
+                </tr>
+                <tr>
+                    <td>Full house</td>
+                    <td>Three of one number and two of another</td>
+                    <td>Score 25</td>
+                    <td class="scoreCol" id="fhScore">0</td>
+                    <td><input class="subButt" id="fhButt" type="button" value="Submit" /></td>
+                </tr>
+                <tr>
+                    <td>Small straight</td>
+                    <td>Four dice in sequence</td>
+                    <td>Score 30</td>
+                    <td class="scoreCol" id="ssScore">0</td>
+                    <td><input class="subButt" id="ssButt" type="button" value="Submit" /></td>
+                </tr>
+                <tr>
+                    <td>Large straight</td>
+                    <td>Five dice in sequence</td>
+                    <td>Score 40</td>
+                    <td class="scoreCol" id="lsScore">0</td>
+                    <td><input class="subButt" id="lsButt" type="button" value="Submit" /></td>
+                </tr>
+                <tr>
+                    <td>Yahtzee</td>
+                    <td>All dice the same</td>
+                    <td>Score 50</td>
+                    <td class="scoreCol" id="yahScore">0</td>
+                    <td><input class="subButt" id="yahButt" type="button" value="Submit" /></td>
+                </tr>
+                <tr>
+                    <td>Chance</td>
+                    <td>Any combination</td>
+                    <td>Sum of all dice</td>
+                    <td class="scoreCol" id="chScore">0</td>
+                    <td><input class="subButt" id="chButt" type="button" value="Submit" /></td>
+                </tr>
+                <tr>
+                    <td>Yahtzee bonus</td>
+                    <td>Additional Yahtzees</td>
+                    <td>Score 100 each</td>
+                    <td class="scoreCol" id="yahBonus">0</td>
+                    <td hidden></td>
+                </tr>
+                <tr>
+                    <th colspan="3">Lower total</th>
+                    <th class="scoreCol" id="lowerTotal">0</th>
+                    <td hidden></td>
+                </tr>
+            </table>
+        </div>
+        <!--Total score table-->
+        <div id="totalScoreDiv">
+            <table id="totalScoreTab">
+                <tr>
+                    <th>Your total score:</th>
+                    <th class="scoreCol" id="totalScore">0</th>
+                </tr>
+            </table>
+            <input id="resetButt" type="button" value="Restart game" />
+        </div>
+    </main>
+    <!--Footer-->
+    <footer>
+        <p>
+            Read the Yahtzee rules <a href="https://www.hasbro.com/common/instruct/yahtzee.pdf" target="_blank">here</a>.
+            <span class="badges">
+                Validation: 
+                <!--HTML CSS validation links-->
+                <a href="https://validator.w3.org/#validate_by_input"><img src="images/200px-HTML5_logo_and_wordmark.png" alt="HTML5 validation" height="50" width="50" /></a>
+                <a href="https://jigsaw.w3.org/css-validator/#validate_by_input"><img src="images/CSS3_logo_and_wordmark.svg(1).png" alt="CSS validation" height="50" width="35" /></a>
+            </span>
+        </p>
+    </footer>
+</body>
+</html>
